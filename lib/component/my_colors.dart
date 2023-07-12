@@ -23,8 +23,8 @@ class SolidColors {
   static const Color greyColor = Color.fromARGB(255, 156, 156, 156);
   static const Color lightIcon = Color.fromARGB(255, 255, 255, 255);
   static const Color blackColor = Color.fromARGB(255, 4, 4, 4);
-  static const Color yelowColor = Color.fromARGB(255, 255, 235, 59);
-  static const Color erorColor = Color.fromARGB(255, 227, 10, 10);
+  static const Color yellowColor = Color.fromARGB(255, 255, 235, 59);
+  static const Color errorColor = Color.fromARGB(255, 227, 10, 10);
   static const Color lightBackColor = Color.fromARGB(255, 255, 255, 255);
   static const Color minutesColorColor =  Color.fromARGB(255, 203, 202, 202);
 
