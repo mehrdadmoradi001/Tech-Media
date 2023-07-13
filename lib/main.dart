@@ -31,6 +31,24 @@ class MyApp extends StatelessWidget {
       supportedLocales: [
         Locale('fa'), // farsi
       ],
+      theme: ThemeData(
+        fontFamily: 'vazir',
+        brightness: Brightness.light,
+        textTheme: TextTheme(
+          labelLarge: TextStyle(
+            fontFamily: 'vazir',
+              fontWeight: FontWeight.w500,
+            fontSize: 16,
+            color: SolidColors.posterTitle
+          ),
+          labelMedium: TextStyle(
+              fontFamily: 'vazir',
+              fontSize: 14,
+              fontWeight: FontWeight.w300,
+              color: SolidColors.posterSubTitle
+          ),
+        ),
+      ),
       home: SplashScreen(),
     );
   }

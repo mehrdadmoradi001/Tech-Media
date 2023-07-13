@@ -13,6 +13,10 @@ class MyStrings {
   static const String insertYourEmail = "لطفا ایمیلت رو وارد کن";
   static const String activateCode = "کد فعال سازی رو وارد کن ";
   static const String chooseCats = "دسته بندی هایی که دوست داری رو انتخاب کن";
+  static const String posterTitle = 'ملیکا عزیزی';
+  static const String posterTitleSuffix = 'یک روز پیش';
+  static const String posterTitlePrefix = '253';
+  static const String posterSubTitle = 'دوازده قدم برنامه نویسی یک دوره ...';
   static const String welcome = """به تک‌بلاگ خوش اومدی
 
 برای ارسال مطلب و پادکست باید حتما 
