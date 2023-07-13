@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tech_media/view/main_screen.dart';
 import '../component/my_colors.dart';
 import '../gen/assets.gen.dart';
@@ -29,21 +30,19 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: SafeArea(
         child: Center(
-          child: Stack(
-            alignment: Alignment.center,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Positioned(
-                top: 130,
-                child: Image(
-                  image: Assets.images.logo.provider(),height: 400,
-                ),
+              SvgPicture.asset(
+                Assets.images.logo.path,
+                height: 160,
               ),
-              Positioned(
-                bottom: 300,
-                child: SpinKitFadingCube(
-                  color: SolidColors.primaryColor,
-                  size: 32.0,
-                ),
+              SizedBox(
+                height: 60,
+              ),
+              SpinKitFadingCube(
+                color: SolidColors.primaryColor,
+                size: 36.0,
               ),
             ],
           ),

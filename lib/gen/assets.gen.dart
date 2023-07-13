@@ -82,8 +82,8 @@ class $AssetsImagesGen {
   AssetGenImage get emptyState =>
       const AssetGenImage('assets/images/empty_state.png');
 
-  /// File path: assets/images/logo.png
-  AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
+  /// File path: assets/images/logo.svg
+  SvgGenImage get logo => const SvgGenImage('assets/images/logo.svg');
 
   /// File path: assets/images/poster_test.jpg
   AssetGenImage get posterTest =>
