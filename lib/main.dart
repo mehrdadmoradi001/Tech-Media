@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:tech_media/view/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,9 +21,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: [
         Locale('fa'), // farsi
       ],
-      home: Scaffold(
-        body: Text('dsdds'),
-      ),
+      home: SplashScreen(),
     );
   }
 }
