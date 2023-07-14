@@ -47,6 +47,12 @@ class MyApp extends StatelessWidget {
               fontWeight: FontWeight.w300,
               color: SolidColors.posterSubTitle
           ),
+          titleMedium: TextStyle(
+              fontFamily: 'vazir',
+              fontSize: 14,
+              fontWeight: FontWeight.w300,
+              color: Colors.white
+          ),
         ),
       ),
       home: SplashScreen(),

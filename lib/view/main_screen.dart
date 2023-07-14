@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tech_media/component/my_colors.dart';
-import 'package:tech_media/component/my_strings.dart';
 import 'package:tech_media/models/fake_data.dart';
+
 import '../gen/assets.gen.dart';
 
 class MainScreen extends StatelessWidget {
@@ -12,6 +12,8 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
     var size = MediaQuery.of(context).size;
+    double bodyMargin = size.width / 10;
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -90,7 +92,7 @@ class MainScreen extends StatelessWidget {
                           ],
                         ),
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(0,0,28,0),
+                          padding: const EdgeInsets.fromLTRB(0, 0, 28, 0),
                           child: Text(
                             homePagePosterMap['title'],
                             style: textTheme.labelLarge,
@@ -100,6 +102,49 @@ class MainScreen extends StatelessWidget {
                     ),
                   ),
                 ],
+              ),
+              SizedBox(height: 16),
+              SizedBox(
+                height: 60,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: HashTagModelList.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: EdgeInsets.fromLTRB(
+                          0, 8, index == 0 ? bodyMargin : 15, 8),
+                      child: Container(
+                          height: 60,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(24),
+                            ),
+                            gradient: LinearGradient(
+                              colors: GradientColors.tags,
+                              begin: Alignment.centerRight,
+                              end: Alignment.centerLeft,
+                            ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
+                            child: Row(
+                              children: [
+                                ImageIcon(
+                                  Assets.icons.hashtagicon.provider(),
+                                  color: Colors.white,
+                                  size: 14,
+                                ),
+                                SizedBox(width: 8),
+                                Text(
+                                  HashTagModelList[index].title,
+                                  style: textTheme.titleMedium,
+                                ),
+                              ],
+                            ),
+                          )),
+                    );
+                  },
+                ),
               ),
             ],
           ),

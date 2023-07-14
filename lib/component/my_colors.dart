@@ -40,8 +40,8 @@ class GradientColors {
     Color.fromARGB(255, 255, 255, 255)
   ];
   static const List<Color> tags = [
-    Color.fromARGB(255, 0, 0, 0),
-    Color.fromARGB(255, 63, 63, 63)
+    Color.fromARGB(255, 0, 9, 51),
+    Color.fromARGB(225, 73, 91, 174)
   ];
   static const List<Color> blogPost = [
     Color.fromARGB(255, 0, 0, 0),
