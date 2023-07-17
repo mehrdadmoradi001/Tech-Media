@@ -36,23 +36,25 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.light,
         textTheme: TextTheme(
           labelLarge: TextStyle(
-            fontFamily: 'vazir',
+              fontFamily: 'vazir',
               fontWeight: FontWeight.w500,
-            fontSize: 16,
-            color: SolidColors.posterTitle
-          ),
+              fontSize: 16,
+              color: SolidColors.posterTitle),
           labelMedium: TextStyle(
               fontFamily: 'vazir',
               fontSize: 14,
               fontWeight: FontWeight.w300,
-              color: SolidColors.posterSubTitle
-          ),
+              color: SolidColors.posterSubTitle),
           titleMedium: TextStyle(
               fontFamily: 'vazir',
               fontSize: 14,
               fontWeight: FontWeight.w300,
-              color: Colors.white
-          ),
+              color: Colors.white),
+          headlineMedium: TextStyle(
+              fontFamily: 'vazir',
+              fontSize: 14,
+              fontWeight: FontWeight.w800,
+              color: SolidColors.seeMore),
         ),
       ),
       home: SplashScreen(),

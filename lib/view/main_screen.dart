@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tech_media/component/my_colors.dart';
+import 'package:tech_media/component/my_strings.dart';
 import 'package:tech_media/models/fake_data.dart';
 
 import '../gen/assets.gen.dart';
@@ -142,6 +143,112 @@ class MainScreen extends StatelessWidget {
                               ],
                             ),
                           )),
+                    );
+                  },
+                ),
+              ),
+              SizedBox(height: 32),
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(right: bodyMargin, bottom: 8),
+                    child: ImageIcon(
+                      Assets.icons.bluePen.provider(),
+                      color: SolidColors.seeMore,
+                    ),
+                  ),
+                  SizedBox(width: 8),
+                  Text(
+                    MyStrings.viewHotsBlog,
+                    style: textTheme.headlineMedium,
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: size.height / 3.5,
+                child: ListView.builder(
+                  itemCount: blogModelList.getRange(0, 5).length,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(
+                              8, 8, index == 0 ? bodyMargin : 15, 8),
+                          //blogModelList
+                          child: SizedBox(
+                            height: size.height / 5.3,
+                            width: size.width / 2.4,
+                            child: Stack(
+
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(16),
+                                    ),
+                                    image: DecorationImage(
+                                      image: NetworkImage(
+                                          blogModelList[index].imageUrl),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                  foregroundDecoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(16),
+                                    ),
+                                    gradient: LinearGradient(
+                                      colors: GradientColors.blogPost,
+                                      begin: Alignment.bottomCenter,
+                                      end: Alignment.topCenter,
+                                    ),
+                                  ),
+                                ),
+                                Positioned(
+                                  bottom: 8,
+                                  left: 0,
+                                  right: 0,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Text(
+                                        blogModelList[index].writer,
+                                        style: textTheme.labelMedium,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            blogModelList[index].views,
+                                            style: textTheme.labelMedium,
+                                          ),
+                                          SizedBox(width: 8),
+                                          Icon(
+                                            Icons.remove_red_eye_sharp,
+                                            color: Colors.white,
+                                            size: 16.0,
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding:  EdgeInsets.fromLTRB(8,8,index==0 ? bodyMargin : 15,8),
+                          child: SizedBox(
+                            width: size.width / 2.4,
+                            child: Text(
+                              blogModelList[index].title,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                            ),
+                          ),
+                        ),
+                      ],
                     );
                   },
                 ),
