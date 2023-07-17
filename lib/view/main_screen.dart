@@ -180,7 +180,6 @@ class MainScreen extends StatelessWidget {
                             height: size.height / 5.3,
                             width: size.width / 2.4,
                             child: Stack(
-
                               children: [
                                 Container(
                                   decoration: BoxDecoration(
@@ -238,7 +237,8 @@ class MainScreen extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding:  EdgeInsets.fromLTRB(8,8,index==0 ? bodyMargin : 15,8),
+                          padding: EdgeInsets.fromLTRB(
+                              8, 8, index == 0 ? bodyMargin : 15, 8),
                           child: SizedBox(
                             width: size.width / 2.4,
                             child: Text(
