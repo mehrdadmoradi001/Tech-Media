@@ -335,6 +335,7 @@ class MainScreen extends StatelessWidget {
                 ),
               ),
             ),
+
             Positioned(
               bottom: 0,
               left: 0,
