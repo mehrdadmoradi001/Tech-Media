@@ -343,6 +343,11 @@ class MainScreen extends StatelessWidget {
               child: Container(
                 height: size.height / 10,
                 decoration: BoxDecoration(
+                  boxShadow: [
+                  BoxShadow(
+                    blurStyle: BlurStyle.normal,
+                  blurRadius: 15,)
+                  ],
                   gradient: LinearGradient(
                     colors: GradientColors.bottomNavBackground,
                     begin: Alignment(-1, -1),
