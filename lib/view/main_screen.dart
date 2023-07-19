@@ -22,15 +22,15 @@ class MainScreen extends StatelessWidget {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Icon(Icons.menu),
+            const Icon(Icons.menu),
             Padding(
-              padding: EdgeInsets.fromLTRB(0, 0, 0, 15),
+              padding: const EdgeInsets.fromLTRB(0, 0, 0, 15),
               child: SvgPicture.asset(
                 Assets.images.logo.path,
                 height: size.height / 12,
               ),
             ),
-            Icon(Icons.search),
+            const Icon(Icons.search),
           ],
         ),
       ),
@@ -44,7 +44,7 @@ class MainScreen extends StatelessWidget {
               right: 0,
               child: Container(
                 height: size.height / 15,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   boxShadow: [
                   BoxShadow(
                     blurRadius: 20,
