@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tech_media/component/my_colors.dart';
 import 'package:tech_media/view/home_screen.dart';
+import 'package:tech_media/view/profile_screen.dart';
 
 import '../gen/assets.gen.dart';
 
@@ -37,63 +38,80 @@ class MainScreen extends StatelessWidget {
       body: SafeArea(
         child: Stack(
           children: [
-            HomeScreen(size: size, textTheme: textTheme, bodyMargin: bodyMargin),
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Container(
-                height: size.height / 15,
-                decoration: const BoxDecoration(
-                  boxShadow: [
-                  BoxShadow(
-                    blurRadius: 20,
-                    color: Colors.white,
-                    offset: Offset(-10, -25),
-                  ),
-                    BoxShadow(
-                      blurRadius: 20,
-                      color: Colors.white,
-                      offset: Offset(-10, 20),
-                    )
-                  ],
-                  gradient: LinearGradient(
-                    colors: GradientColors.bottomNavBackground,
-                    begin: Alignment(-1, -1),
-                    end: Alignment(1, 1),
-                  ),
+            Positioned.fill(
+              child: ProfileScreen(
+                  size: size, textTheme: textTheme, bodyMargin: bodyMargin),
+            ),
+            //HomeScreen(size: size, textTheme: textTheme, bodyMargin: bodyMargin),
+            BottomNavBar(size: size),
+          ],
+        ),
+      ),
+    );
+  }
+}
 
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: ImageIcon(
-                        Assets.icons.home.provider(),
-                        color: Colors.black,
-                        size: 25,
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: SvgPicture.asset(
-                        Assets.icons.writer.path,
-                        width: 60,
-                        height: 60,
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: ImageIcon(
-                        Assets.icons.user.provider(),
-                        color: Colors.black,
-                        size: 25,
-                      ),
-                    ),
-                  ],
-                ),
+class BottomNavBar extends StatelessWidget {
+  const BottomNavBar({
+    super.key,
+    required this.size,
+  });
+
+  final Size size;
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      bottom: 0,
+      left: 0,
+      right: 0,
+      child: Container(
+        height: size.height / 15,
+        decoration: const BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 20,
+              color: Colors.white,
+              offset: Offset(-10, -25),
+            ),
+            BoxShadow(
+              blurRadius: 20,
+              color: Colors.white,
+              offset: Offset(-10, 20),
+            )
+          ],
+          gradient: LinearGradient(
+            colors: GradientColors.bottomNavBackground,
+            begin: Alignment(-1, -1),
+            end: Alignment(1, 1),
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            IconButton(
+              onPressed: () {},
+              icon: ImageIcon(
+                Assets.icons.home.provider(),
+                color: Colors.black,
+                size: 25,
+              ),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: SvgPicture.asset(
+                Assets.icons.writer.path,
+                width: 60,
+                height: 60,
+              ),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: ImageIcon(
+                Assets.icons.user.provider(),
+                color: Colors.black,
+                size: 25,
               ),
             ),
           ],

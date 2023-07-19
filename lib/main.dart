@@ -6,7 +6,7 @@ import 'package:tech_media/view/splash_screen.dart';
 
 void main() {
   //SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: SolidColors.statusBarColor,
     statusBarIconBrightness: Brightness.dark,
     systemNavigationBarColor: SolidColors.systemNavigationBarColor,
@@ -23,18 +23,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      localizationsDelegates: [
+      localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: [
+      supportedLocales:const  [
         Locale('fa'), // farsi
       ],
       theme: ThemeData(
         fontFamily: 'vazir',
         brightness: Brightness.light,
-        textTheme: TextTheme(
+        textTheme: const TextTheme(
           labelLarge: TextStyle(
               fontFamily: 'vazir',
               fontWeight: FontWeight.w500,
