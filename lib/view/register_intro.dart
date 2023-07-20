@@ -74,12 +74,71 @@ class RegisterIntro extends StatelessWidget {
                     child: TextField(
                       onChanged: (value) {
 
-                        print(value + 'is Email : ' + isEmail(value).toString());
+                        print('${value}is Email : ${isEmail(value)}');
                       },
                       style: textTheme.labelSmall,
                       textAlign: TextAlign.center,
                       decoration: InputDecoration(
                         hintText: MyStrings.tecEmail,
+                        hintStyle: textTheme.headlineSmall,
+                      ),
+                    ),
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        _buildActivateCodeBottomSheet(context, size, textTheme);
+                      }, child: Text(MyStrings.continuation))
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+
+
+
+
+  Future<dynamic> _buildActivateCodeBottomSheet(
+      BuildContext context, Size size, TextTheme textTheme) {
+    return showModalBottomSheet(
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      context: context,
+      builder: (context) {
+        return Padding(
+          padding:
+          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          child: Container(
+            height: size.height / 2,
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(30),
+              ),
+            ),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    MyStrings.activateCode,
+                    style: textTheme.headlineMedium,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(24.0),
+                    child: TextField(
+                      onChanged: (value) {
+
+                        print('${value}is Email : ${isEmail(value)}');
+                      },
+                      style: textTheme.labelSmall,
+                      textAlign: TextAlign.center,
+                      decoration: InputDecoration(
+                        hintText: '******',
                         hintStyle: textTheme.headlineSmall,
                       ),
                     ),
@@ -95,4 +154,5 @@ class RegisterIntro extends StatelessWidget {
       },
     );
   }
+
 }
