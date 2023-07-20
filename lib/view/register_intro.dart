@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tech_media/component/my_strings.dart';
 import 'package:tech_media/gen/assets.gen.dart';
+import 'package:tech_media/view/my_category.dart';
 import 'package:validators/validators.dart';
+
 class RegisterIntro extends StatelessWidget {
   const RegisterIntro({Key? key}) : super(key: key);
 
@@ -73,7 +75,6 @@ class RegisterIntro extends StatelessWidget {
                     padding: const EdgeInsets.all(24.0),
                     child: TextField(
                       onChanged: (value) {
-
                         print('${value}is Email : ${isEmail(value)}');
                       },
                       style: textTheme.labelSmall,
@@ -88,7 +89,8 @@ class RegisterIntro extends StatelessWidget {
                       onPressed: () {
                         Navigator.pop(context);
                         _buildActivateCodeBottomSheet(context, size, textTheme);
-                      }, child: Text(MyStrings.continuation))
+                      },
+                      child: Text(MyStrings.continuation))
                 ],
               ),
             ),
@@ -97,10 +99,6 @@ class RegisterIntro extends StatelessWidget {
       },
     );
   }
-
-
-
-
 
   Future<dynamic> _buildActivateCodeBottomSheet(
       BuildContext context, Size size, TextTheme textTheme) {
@@ -111,7 +109,7 @@ class RegisterIntro extends StatelessWidget {
       builder: (context) {
         return Padding(
           padding:
-          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           child: Container(
             height: size.height / 2,
             decoration: const BoxDecoration(
@@ -132,7 +130,6 @@ class RegisterIntro extends StatelessWidget {
                     padding: const EdgeInsets.all(24.0),
                     child: TextField(
                       onChanged: (value) {
-
                         print('${value}is Email : ${isEmail(value)}');
                       },
                       style: textTheme.labelSmall,
@@ -145,7 +142,13 @@ class RegisterIntro extends StatelessWidget {
                   ),
                   ElevatedButton(
                       onPressed: () {
-                      }, child: Text(MyStrings.continuation))
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => const MyCategory(),
+                          ),
+                        );
+                      },
+                      child: Text(MyStrings.continuation))
                 ],
               ),
             ),
@@ -154,5 +157,4 @@ class RegisterIntro extends StatelessWidget {
       },
     );
   }
-
 }
