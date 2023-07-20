@@ -55,9 +55,14 @@ class MyApp extends StatelessWidget {
               fontSize: 14,
               fontWeight: FontWeight.w800,
               color: SolidColors.seeMore),
+          headlineLarge: TextStyle(
+              fontFamily: 'vazir',
+              fontSize: 14,
+              fontWeight: FontWeight.w800,
+              color: SolidColors.blackColor),
         ),
       ),
-      home: SplashScreen(),
+      home: const SplashScreen(),
     );
   }
 }
