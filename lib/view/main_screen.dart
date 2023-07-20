@@ -6,14 +6,26 @@ import 'package:tech_media/view/profile_screen.dart';
 
 import '../gen/assets.gen.dart';
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
+
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+  var selectedPageIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
     var size = MediaQuery.of(context).size;
     double bodyMargin = size.width / 10;
+
+    List<Widget> techMainScreenPage = [
+      HomeScreen(size: size, textTheme: textTheme, bodyMargin: bodyMargin),
+      ProfileScreen(size: size, textTheme: textTheme, bodyMargin: bodyMargin),
+    ];
 
     return Scaffold(
       appBar: AppBar(
@@ -40,12 +52,18 @@ class MainScreen extends StatelessWidget {
           children: [
             Center(
               child: Positioned.fill(
-                child: ProfileScreen(
-                    size: size, textTheme: textTheme, bodyMargin: bodyMargin),
+                child: techMainScreenPage[selectedPageIndex],
               ),
             ),
             //HomeScreen(size: size, textTheme: textTheme, bodyMargin: bodyMargin),
-            BottomNavBar(size: size),
+            BottomNavBar(
+              size: size,
+              changeScreen: (int value) {
+                setState(() {
+                  selectedPageIndex = value;
+                });
+              },
+            ),
           ],
         ),
       ),
@@ -57,9 +75,11 @@ class BottomNavBar extends StatelessWidget {
   const BottomNavBar({
     super.key,
     required this.size,
+    required this.changeScreen,
   });
 
   final Size size;
+  final Function(int) changeScreen;
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +113,7 @@ class BottomNavBar extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             IconButton(
-              onPressed: () {},
+              onPressed: (() => changeScreen(0)),
               icon: ImageIcon(
                 Assets.icons.home.provider(),
                 color: Colors.black,
@@ -109,7 +129,7 @@ class BottomNavBar extends StatelessWidget {
               ),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: (() => changeScreen(1)),
               icon: ImageIcon(
                 Assets.icons.user.provider(),
                 color: Colors.black,
