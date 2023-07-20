@@ -17,7 +17,7 @@ class MyStrings {
   static const String posterTitleSuffix = 'یک روز پیش';
   static const String posterTitlePrefix = '253';
   static const String posterSubTitle = 'دوازده قدم برنامه نویسی یک دوره ...';
-  static const String welcome = """به تک‌بلاگ خوش اومدی
+  static const String welcome = """به تک‌ مدیا خوش اومدی
 
 برای ارسال مطلب و پادکست باید حتما 
 ثبت نام کنی """;
@@ -26,7 +26,7 @@ class MyStrings {
 اضافه نکردی !!!""";
   static const String shareText = """
 
-من از تکبلاگ استفاده میکنم ، خیلی باحاله ، تو هم داشته باش\n
+من از تک مدیا استفاده میکنم ، خیلی باحاله ، تو هم داشته باش\n
 
 www.sasansafari.com
 
@@ -69,9 +69,9 @@ www.sasansafari.com
   static String writePodcast = "write podcast";
   static String titleArticleText = "مقالات";
   static String userProfile =  "پروفایل کاربری";
-  static String aboutTec =  "درباره تکبلاگ";
-  static String shareTec =  "اشتراک گذاری تک بلاگ";
-  static String tecInGithub =  "تک‌بلاگ در گیت هاب";
+  static String aboutTec =  "درباره تک مدیا";
+  static String shareTec =  "اشتراک گذاری تک مدیا";
+  static String tecInGithub =  "تک‌ مدیا در گیت هاب";
   static String shareKnowledge =  "دونسته هات رو با بقیه به اشتراک بذار ...";
   static String gigTech =  """
 فکر کن !!  اینجا بودنت به این معناست که یک گیک تکنولوژی هستی

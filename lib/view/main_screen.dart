@@ -50,15 +50,13 @@ class _MainScreenState extends State<MainScreen> {
       body: SafeArea(
         child: Stack(
           children: [
-            Center(
-              child: Positioned.fill(
-                child: IndexedStack(
-                  index: selectedPageIndex,
-                  children: [
-                    HomeScreen(size: size, textTheme: textTheme, bodyMargin: bodyMargin),
-                    ProfileScreen(size: size, textTheme: textTheme, bodyMargin: bodyMargin),
-                ],),
-              ),
+            Positioned.fill(
+              child: IndexedStack(
+                index: selectedPageIndex,
+                children: [
+                  HomeScreen(size: size, textTheme: textTheme, bodyMargin: bodyMargin),
+                  ProfileScreen(size: size, textTheme: textTheme, bodyMargin: bodyMargin),
+              ],),
             ),
             //HomeScreen(size: size, textTheme: textTheme, bodyMargin: bodyMargin),
             BottomNavBar(

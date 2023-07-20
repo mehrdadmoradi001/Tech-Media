@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var textTheme = Theme.of(context).textTheme;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       localizationsDelegates: const [
@@ -29,10 +30,37 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales:const  [
+      supportedLocales: const [
         Locale('fa'), // farsi
       ],
       theme: ThemeData(
+        inputDecorationTheme: InputDecorationTheme(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(16),
+            borderSide: const BorderSide(width: 2),
+          ),
+          fillColor: Colors.white
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+            textStyle: MaterialStateProperty.resolveWith(
+              (states) {
+                if (states.contains(MaterialState.pressed)) {
+                  return textTheme.titleMedium;
+                }
+                return textTheme.labelLarge;
+              },
+            ),
+            backgroundColor: MaterialStateProperty.resolveWith(
+              (states) {
+                if (states.contains(MaterialState.pressed)) {
+                  return SolidColors.primaryColor;
+                }
+                return SolidColors.seeMore;
+              },
+            ),
+          ),
+        ),
         fontFamily: 'vazir',
         brightness: Brightness.light,
         textTheme: const TextTheme(
@@ -46,6 +74,11 @@ class MyApp extends StatelessWidget {
               fontSize: 14,
               fontWeight: FontWeight.w300,
               color: SolidColors.posterSubTitle),
+          labelSmall: TextStyle(
+              fontFamily: 'vazir',
+              fontWeight: FontWeight.w500,
+              fontSize: 16,
+              color: SolidColors.blackColor),
           titleMedium: TextStyle(
               fontFamily: 'vazir',
               fontSize: 14,
@@ -61,6 +94,11 @@ class MyApp extends StatelessWidget {
               fontSize: 14,
               fontWeight: FontWeight.w800,
               color: SolidColors.blackColor),
+          headlineSmall: TextStyle(
+              fontFamily: 'vazir',
+              fontSize: 14,
+              fontWeight: FontWeight.w700,
+              color: SolidColors.hintText),
         ),
       ),
       home: const RegisterIntro(),
