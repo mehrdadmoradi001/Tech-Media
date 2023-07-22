@@ -295,8 +295,14 @@ class HomePageTagList extends StatelessWidget {
           return Padding(
             padding: EdgeInsets.fromLTRB(0, 8, index == 0 ? bodyMargin : 15, 8),
             child: MainTagsHashtags(
+              textStyle: textTheme.titleMedium,
               textTheme: textTheme,
               index: index,
+              gradient: const LinearGradient(
+                colors: GradientColors.tags,
+                begin: Alignment.centerRight,
+                end: Alignment.centerLeft,
+              ),
             ),
           );
         },

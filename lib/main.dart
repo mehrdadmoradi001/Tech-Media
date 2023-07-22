@@ -99,6 +99,11 @@ class MyApp extends StatelessWidget {
               fontSize: 14,
               fontWeight: FontWeight.w700,
               color: SolidColors.hintText),
+          displaySmall: TextStyle(
+              fontFamily: 'vazir',
+              fontSize: 14,
+              fontWeight: FontWeight.w300,
+              color: SolidColors.blackColor),
         ),
       ),
       home: const RegisterIntro(),

@@ -1,13 +1,21 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:tech_media/component/my_colors.dart';
 import 'package:tech_media/component/my_components.dart';
 import 'package:tech_media/component/my_strings.dart';
+import 'package:tech_media/models/data_model.dart';
 import 'package:tech_media/models/fake_data.dart';
 import '../gen/assets.gen.dart';
 
-class MyCategory extends StatelessWidget {
+class MyCategory extends StatefulWidget {
   const MyCategory({Key? key}) : super(key: key);
 
+  @override
+  State<MyCategory> createState() => _MyCategoryState();
+}
+
+class _MyCategoryState extends State<MyCategory> {
   @override
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
@@ -56,22 +64,83 @@ class MyCategory extends StatelessWidget {
                     physics: const ClampingScrollPhysics(),
                     itemCount: HashTagModelList.length,
                     shrinkWrap: true,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       childAspectRatio: 0.3,
                       crossAxisSpacing: 5,
                       mainAxisSpacing: 5,
                       crossAxisCount: 2,
                     ),
                     itemBuilder: (context, index) {
-                      return MainTagsHashtags(
-                        textTheme: textTheme,
-                        index: index,
+                      return InkWell(
+                        onTap: () {
+                        },
+                        child: MainTagsHashtags(
+                          textStyle: textTheme.titleMedium,
+                          gradient: const LinearGradient(
+                            colors: GradientColors.tags,
+                            begin: Alignment.centerRight,
+                            end: Alignment.centerLeft,
+                          ),
+                          textTheme: textTheme,
+                          index: index,
+                        ),
                       );
                     },
                   ),
                 ),
                 const SizedBox(height: 24),
-                Image.asset(Assets.icons.downCatArrow.path,height: 55,),
+                Image.asset(
+                  Assets.icons.downCatArrow.path,
+                  height: 55,
+                ),
+                const SizedBox(height: 24),
+                SizedBox(
+                  height: 85,
+                  child: GridView.builder(
+                    scrollDirection: Axis.horizontal,
+                    physics: const ClampingScrollPhysics(),
+                    itemCount: HashTagModelList.length,
+                    shrinkWrap: true,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      childAspectRatio: 0.23,
+                      crossAxisSpacing: 5,
+                      mainAxisSpacing: 5,
+                      crossAxisCount: 2,
+                    ),
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                        onTap: () {
+
+                        },
+                        child: Container(
+                          height: 60,
+                          decoration: const BoxDecoration(
+                            borderRadius:  BorderRadius.all(
+                              Radius.circular(24),
+                            ),
+                            color: SolidColors.surface,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                const SizedBox(width: 8),
+                                Text(
+                                  HashTagModelList[index].title,
+                                  style: textTheme.displaySmall,
+                                ),
+                                const Icon(CupertinoIcons.delete,color: Colors.grey,size: 20,),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
               ],
             ),
           ),

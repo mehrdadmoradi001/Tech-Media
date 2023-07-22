@@ -30,24 +30,27 @@ class MainTagsHashtags extends StatelessWidget {
     super.key,
     required this.textTheme,
     required this.index,
+     this.gradient,
+     this.color,
+     this.textStyle,
   });
 
   final TextTheme textTheme;
   var index;
+   Gradient? gradient;
+   Color? color;
+   TextStyle? textStyle;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 60,
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.all(
           Radius.circular(24),
         ),
-        gradient: LinearGradient(
-          colors: GradientColors.tags,
-          begin: Alignment.centerRight,
-          end: Alignment.centerLeft,
-        ),
+        color: color,
+        gradient: gradient,
       ),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
@@ -61,7 +64,7 @@ class MainTagsHashtags extends StatelessWidget {
             const SizedBox(width: 8),
             Text(
               HashTagModelList[index].title,
-              style: textTheme.titleMedium,
+              style: textStyle,
             ),
           ],
         ),
