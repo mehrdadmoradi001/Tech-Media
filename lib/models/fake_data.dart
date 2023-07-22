@@ -20,7 +20,7 @@ List<HashTagModel> HashTagModelList = [
   HashTagModel(title: 'دارت'),
 ];
 
-
+List<HashTagModel> selectedTags = [];
 
 List<BlogModel> blogModelList = [
   BlogModel(

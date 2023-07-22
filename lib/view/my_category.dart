@@ -74,6 +74,9 @@ class _MyCategoryState extends State<MyCategory> {
                     itemBuilder: (context, index) {
                       return InkWell(
                         onTap: () {
+                          setState(() {
+                            selectedTags.add(HashTagModelList[index]);
+                          });
                         },
                         child: MainTagsHashtags(
                           textStyle: textTheme.titleMedium,
@@ -95,12 +98,13 @@ class _MyCategoryState extends State<MyCategory> {
                   height: 55,
                 ),
                 const SizedBox(height: 24),
+                //selectedTags
                 SizedBox(
                   height: 85,
                   child: GridView.builder(
                     scrollDirection: Axis.horizontal,
                     physics: const ClampingScrollPhysics(),
-                    itemCount: HashTagModelList.length,
+                    itemCount: selectedTags.length,
                     shrinkWrap: true,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
@@ -110,31 +114,32 @@ class _MyCategoryState extends State<MyCategory> {
                       crossAxisCount: 2,
                     ),
                     itemBuilder: (context, index) {
-                      return InkWell(
-                        onTap: () {
-
-                        },
-                        child: Container(
-                          height: 60,
-                          decoration: const BoxDecoration(
-                            borderRadius:  BorderRadius.all(
-                              Radius.circular(24),
-                            ),
-                            color: SolidColors.surface,
+                      return Container(
+                        height: 60,
+                        decoration: const BoxDecoration(
+                          borderRadius:  BorderRadius.all(
+                            Radius.circular(24),
                           ),
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                const SizedBox(width: 8),
-                                Text(
-                                  HashTagModelList[index].title,
-                                  style: textTheme.displaySmall,
-                                ),
-                                const Icon(CupertinoIcons.delete,color: Colors.grey,size: 20,),
-                              ],
-                            ),
+                          color: SolidColors.surface,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              const SizedBox(width: 8),
+                              Text(
+                                selectedTags[index].title,
+                                style: textTheme.displaySmall,
+                              ),
+                               InkWell(
+                                 onTap: () {
+                                   setState(() {
+                                     selectedTags.removeAt(index);
+                                   });
+                                 },
+                                   child: Icon(CupertinoIcons.delete,color: Colors.grey,size: 20,)),
+                            ],
                           ),
                         ),
                       );
