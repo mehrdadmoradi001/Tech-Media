@@ -4,6 +4,8 @@ import 'package:tech_media/component/my_strings.dart';
 import 'package:tech_media/gen/assets.gen.dart';
 import 'package:tech_media/models/fake_data.dart';
 
+import '../component/my_components.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
     super.key,
@@ -35,12 +37,12 @@ class HomeScreen extends StatelessWidget {
             //view hots blog
             SeeMoreBlog(bodyMargin: bodyMargin, textTheme: textTheme),
             //photo & title hots blog
-            HomePageBlogList(size: size, bodyMargin: bodyMargin, textTheme: textTheme),
+            HomePageBlogList(
+                size: size, bodyMargin: bodyMargin, textTheme: textTheme),
             const SizedBox(height: 32),
             SeeMorePodcast(bodyMargin: bodyMargin, textTheme: textTheme),
             HomePagePodcastList(size: size, bodyMargin: bodyMargin),
             const SizedBox(height: 50),
-
           ],
         ),
       ),
@@ -69,8 +71,8 @@ class HomePagePodcastList extends StatelessWidget {
           return Column(
             children: [
               Padding(
-                padding: EdgeInsets.fromLTRB(
-                    8, 8, index == 0 ? bodyMargin : 15, 8),
+                padding:
+                    EdgeInsets.fromLTRB(8, 8, index == 0 ? bodyMargin : 15, 8),
                 //blogModelList
                 child: Container(
                   height: size.height / 5.3,
@@ -80,16 +82,15 @@ class HomePagePodcastList extends StatelessWidget {
                       Radius.circular(16),
                     ),
                     image: DecorationImage(
-                      image: NetworkImage(
-                          blogModelList[index].imageUrl),
+                      image: NetworkImage(blogModelList[index].imageUrl),
                       fit: BoxFit.cover,
                     ),
                   ),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.fromLTRB(
-                    8, 8, index == 0 ? bodyMargin : 15, 8),
+                padding:
+                    EdgeInsets.fromLTRB(8, 8, index == 0 ? bodyMargin : 15, 8),
                 child: SizedBox(
                   width: size.width / 2.4,
                   child: Text(
@@ -122,8 +123,7 @@ class SeeMorePodcast extends StatelessWidget {
     return Row(
       children: [
         Padding(
-          padding:
-          EdgeInsets.only(right: bodyMargin, bottom: 8),
+          padding: EdgeInsets.only(right: bodyMargin, bottom: 8),
           child: ImageIcon(
             Assets.icons.microphon.provider(),
             color: SolidColors.blackColor,
@@ -162,8 +162,8 @@ class HomePageBlogList extends StatelessWidget {
           return Column(
             children: [
               Padding(
-                padding: EdgeInsets.fromLTRB(
-                    8, 8, index == 0 ? bodyMargin : 15, 8),
+                padding:
+                    EdgeInsets.fromLTRB(8, 8, index == 0 ? bodyMargin : 15, 8),
                 //blogModelList
                 child: SizedBox(
                   height: size.height / 5.3,
@@ -176,8 +176,7 @@ class HomePageBlogList extends StatelessWidget {
                             Radius.circular(16),
                           ),
                           image: DecorationImage(
-                            image: NetworkImage(
-                                blogModelList[index].imageUrl),
+                            image: NetworkImage(blogModelList[index].imageUrl),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -197,8 +196,7 @@ class HomePageBlogList extends StatelessWidget {
                         left: 0,
                         right: 0,
                         child: Row(
-                          mainAxisAlignment:
-                          MainAxisAlignment.spaceAround,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Text(
                               blogModelList[index].writer,
@@ -226,8 +224,8 @@ class HomePageBlogList extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.fromLTRB(
-                    8, 8, index == 0 ? bodyMargin : 15, 8),
+                padding:
+                    EdgeInsets.fromLTRB(8, 8, index == 0 ? bodyMargin : 15, 8),
                 child: SizedBox(
                   width: size.width / 2.4,
                   child: Text(
@@ -257,11 +255,10 @@ class SeeMoreBlog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row (
+    return Row(
       children: [
         Padding(
-          padding:
-          EdgeInsets.only(right: bodyMargin, bottom: 8),
+          padding: EdgeInsets.only(right: bodyMargin, bottom: 8),
           child: ImageIcon(
             Assets.icons.bluePen.provider(),
             color: SolidColors.blackColor,
@@ -296,38 +293,11 @@ class HomePageTagList extends StatelessWidget {
         itemCount: HashTagModelList.length,
         itemBuilder: (context, index) {
           return Padding(
-            padding: EdgeInsets.fromLTRB(
-                0, 8, index == 0 ? bodyMargin : 15, 8),
-            child: Container(
-                height: 60,
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(24),
-                  ),
-                  gradient: LinearGradient(
-                    colors: GradientColors.tags,
-                    begin: Alignment.centerRight,
-                    end: Alignment.centerLeft,
-                  ),
-                ),
-                child: Padding(
-                  padding:
-                  const EdgeInsets.fromLTRB(16, 8, 8, 8),
-                  child: Row(
-                    children: [
-                      ImageIcon(
-                        Assets.icons.hashtagicon.provider(),
-                        color: Colors.white,
-                        size: 14,
-                      ),
-                      const SizedBox(width: 8),
-                      Text(
-                        HashTagModelList[index].title,
-                        style: textTheme.titleMedium,
-                      ),
-                    ],
-                  ),
-                )),
+            padding: EdgeInsets.fromLTRB(0, 8, index == 0 ? bodyMargin : 15, 8),
+            child: MainTagsHashtags(
+              textTheme: textTheme,
+              index: index,
+            ),
           );
         },
       ),
@@ -357,8 +327,7 @@ class HomePagePoster extends StatelessWidget {
               Radius.circular(16),
             ),
             image: DecorationImage(
-                image:
-                AssetImage(homePagePosterMap['imageAsset']),
+                image: AssetImage(homePagePosterMap['imageAsset']),
                 //Image(image: homePagePosterMap['imageAsset'].provider()).image,
                 fit: BoxFit.cover),
           ),
@@ -380,8 +349,7 @@ class HomePagePoster extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
-                mainAxisAlignment:
-                MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text(
                     homePagePosterMap['writer'] +
