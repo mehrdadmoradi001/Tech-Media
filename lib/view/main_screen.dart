@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tech_media/component/my_colors.dart';
+import 'package:tech_media/component/my_strings.dart';
 import 'package:tech_media/view/home_screen.dart';
 import 'package:tech_media/view/profile_screen.dart';
 
@@ -12,6 +13,8 @@ class MainScreen extends StatefulWidget {
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
+
+final GlobalKey<ScaffoldState> _key = GlobalKey();
 
 class _MainScreenState extends State<MainScreen> {
   var selectedPageIndex = 0;
@@ -28,14 +31,78 @@ class _MainScreenState extends State<MainScreen> {
     ];*/
 
     return Scaffold(
+      key: _key,
+      drawer: Drawer(
+        backgroundColor: SolidColors.scaffoldBg,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: bodyMargin),
+          child: ListView(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(40, 10, 40, 20),
+                child: DrawerHeader(
+                  child: Center(
+                    child: SvgPicture.asset(
+                      Assets.images.logo.path,
+                    ),
+                  ), //Image.asset(Assets.images.logo.path,height: 2,),
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  MyStrings.userProfile,
+                  style: textTheme.headlineLarge,
+                ),
+                onTap: () {},
+              ),
+              const Divider(
+                color: SolidColors.dividerColor,
+              ),
+              ListTile(
+                title: Text(
+                  MyStrings.userProfile,
+                  style: textTheme.headlineLarge,
+                ),
+                onTap: () {},
+              ),
+              const Divider(
+                color: SolidColors.dividerColor,
+              ),
+              ListTile(
+                title: Text(
+                  MyStrings.userProfile,
+                  style: textTheme.headlineLarge,
+                ),
+                onTap: () {},
+              ),
+              const Divider(
+                color: SolidColors.dividerColor,
+              ),
+              ListTile(
+                title: Text(
+                  MyStrings.userProfile,
+                  style: textTheme.headlineLarge,
+                ),
+                onTap: () {},
+              ),
+              const Divider(
+                color: SolidColors.dividerColor,
+              ),
+            ],
+          ),
+        ),
+      ),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         foregroundColor: Colors.black,
         backgroundColor: SolidColors.scaffoldBg,
         elevation: 0,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            const Icon(Icons.menu),
+            InkWell(onTap: () {
+              _key.currentState!.openDrawer();
+            }, child: const Icon(Icons.menu)),
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 0, 0, 15),
               child: SvgPicture.asset(
@@ -54,9 +121,12 @@ class _MainScreenState extends State<MainScreen> {
               child: IndexedStack(
                 index: selectedPageIndex,
                 children: [
-                  HomeScreen(size: size, textTheme: textTheme, bodyMargin: bodyMargin),
-                  ProfileScreen(size: size, textTheme: textTheme, bodyMargin: bodyMargin),
-              ],),
+                  HomeScreen(
+                      size: size, textTheme: textTheme, bodyMargin: bodyMargin),
+                  ProfileScreen(
+                      size: size, textTheme: textTheme, bodyMargin: bodyMargin),
+                ],
+              ),
             ),
             //HomeScreen(size: size, textTheme: textTheme, bodyMargin: bodyMargin),
             BottomNavBar(

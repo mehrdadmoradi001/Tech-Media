@@ -16,10 +16,10 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 3)).then((value) {
+    Future.delayed(const Duration(seconds: 3)).then((value) {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => MainScreen(),
+          builder: (context) => const MainScreen(),
         ),
       );
     });
@@ -37,10 +37,10 @@ class _SplashScreenState extends State<SplashScreen> {
                 Assets.images.logo.path,
                 height: 160,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 60,
               ),
-              SpinKitFadingCube(
+              const SpinKitFadingCube(
                 color: SolidColors.primaryColor,
                 size: 36.0,
               ),
