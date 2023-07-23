@@ -75,7 +75,10 @@ class _MyCategoryState extends State<MyCategory> {
                       return InkWell(
                         onTap: () {
                           setState(() {
-                            selectedTags.add(HashTagModelList[index]);
+                            // If selectedTags didn't contain an index, add index
+                            if(!selectedTags.contains(HashTagModelList[index])){
+                              selectedTags.add(HashTagModelList[index]);
+                            }
                           });
                         },
                         child: MainTagsHashtags(
@@ -117,7 +120,7 @@ class _MyCategoryState extends State<MyCategory> {
                       return Container(
                         height: 60,
                         decoration: const BoxDecoration(
-                          borderRadius:  BorderRadius.all(
+                          borderRadius: BorderRadius.all(
                             Radius.circular(24),
                           ),
                           color: SolidColors.surface,
@@ -132,13 +135,17 @@ class _MyCategoryState extends State<MyCategory> {
                                 selectedTags[index].title,
                                 style: textTheme.displaySmall,
                               ),
-                               InkWell(
-                                 onTap: () {
-                                   setState(() {
-                                     selectedTags.removeAt(index);
-                                   });
-                                 },
-                                   child: Icon(CupertinoIcons.delete,color: Colors.grey,size: 20,)),
+                              InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      selectedTags.removeAt(index);
+                                    });
+                                  },
+                                  child: const Icon(
+                                    CupertinoIcons.delete,
+                                    color: Colors.grey,
+                                    size: 20,
+                                  )),
                             ],
                           ),
                         ),
