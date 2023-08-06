@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:tech_media/component/my_colors.dart';
 import 'package:tech_media/component/my_strings.dart';
 import 'package:tech_media/view/home_screen.dart';
@@ -7,17 +8,13 @@ import 'package:tech_media/view/profile_screen.dart';
 
 import '../gen/assets.gen.dart';
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
-
-  @override
-  State<MainScreen> createState() => _MainScreenState();
-}
 
 final GlobalKey<ScaffoldState> _key = GlobalKey();
 
-class _MainScreenState extends State<MainScreen> {
-  var selectedPageIndex = 0;
+class MainScreen extends StatelessWidget {
+  RxInt selectedPageIndex = 0.obs;
+
+  MainScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +57,7 @@ class _MainScreenState extends State<MainScreen> {
               ),
               ListTile(
                 title: Text(
-                  MyStrings.userProfile,
+                  MyStrings.aboutTec,
                   style: textTheme.headlineLarge,
                 ),
                 onTap: () {},
@@ -70,7 +67,7 @@ class _MainScreenState extends State<MainScreen> {
               ),
               ListTile(
                 title: Text(
-                  MyStrings.userProfile,
+                  MyStrings.shareTec,
                   style: textTheme.headlineLarge,
                 ),
                 onTap: () {},
@@ -80,7 +77,7 @@ class _MainScreenState extends State<MainScreen> {
               ),
               ListTile(
                 title: Text(
-                  MyStrings.userProfile,
+                  MyStrings.tecInGithub,
                   style: textTheme.headlineLarge,
                 ),
                 onTap: () {},
@@ -115,29 +112,31 @@ class _MainScreenState extends State<MainScreen> {
         ),
       ),
       body: SafeArea(
-        child: Stack(
-          children: [
-            Positioned.fill(
-              child: IndexedStack(
-                index: selectedPageIndex,
-                children: [
-                  HomeScreen(
-                      size: size, textTheme: textTheme, bodyMargin: bodyMargin),
-                  ProfileScreen(
-                      size: size, textTheme: textTheme, bodyMargin: bodyMargin),
-                ],
+        child: Obx(
+          ()=> Stack(
+            children: [
+              Positioned.fill(
+                child: IndexedStack(
+                  index: selectedPageIndex.value,
+                  children: [
+                    HomeScreen(
+                        size: size, textTheme: textTheme, bodyMargin: bodyMargin),
+                    ProfileScreen(
+                        size: size, textTheme: textTheme, bodyMargin: bodyMargin),
+                  ],
+                ),
               ),
-            ),
-            //HomeScreen(size: size, textTheme: textTheme, bodyMargin: bodyMargin),
-            BottomNavBar(
-              size: size,
-              changeScreen: (int value) {
-                setState(() {
-                  selectedPageIndex = value;
-                });
-              },
-            ),
-          ],
+              //HomeScreen(size: size, textTheme: textTheme, bodyMargin: bodyMargin),
+              BottomNavBar(
+                size: size,
+                changeScreen: (int value) {
+
+                    selectedPageIndex.value = value;
+
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
