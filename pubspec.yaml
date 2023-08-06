@@ -38,6 +38,7 @@ dependencies:
   flutter_spinkit: ^5.2.0
   validators: ^3.0.0
   get: ^4.6.5
+  share_plus: ^7.1.0
 
 
 
