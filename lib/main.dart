@@ -105,7 +105,7 @@ class MyApp extends StatelessWidget {
               color: SolidColors.blackColor),
         ),
       ),
-      home: const MainScreen(),
+      home:  MainScreen(),
     );
   }
 }
