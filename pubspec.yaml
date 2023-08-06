@@ -37,6 +37,7 @@ dependencies:
   intl: any
   flutter_spinkit: ^5.2.0
   validators: ^3.0.0
+  get: ^4.6.5
 
 
 
