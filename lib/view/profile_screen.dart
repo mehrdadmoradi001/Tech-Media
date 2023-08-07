@@ -5,7 +5,6 @@ import 'package:tech_media/component/my_components.dart';
 import 'package:tech_media/component/my_strings.dart';
 import 'package:tech_media/gen/assets.gen.dart';
 
-import '../gen/assets.gen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({
