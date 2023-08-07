@@ -5,6 +5,7 @@ import 'package:tech_media/component/my_colors.dart';
 import 'package:tech_media/component/my_strings.dart';
 import 'package:tech_media/view/home_screen.dart';
 import 'package:tech_media/view/profile_screen.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../gen/assets.gen.dart';
 
@@ -70,7 +71,9 @@ class MainScreen extends StatelessWidget {
                   MyStrings.shareTec,
                   style: textTheme.headlineLarge,
                 ),
-                onTap: () {},
+                onTap: () async{
+                  await Share.share(MyStrings.shareText);
+                },
               ),
               const Divider(
                 color: SolidColors.dividerColor,
