@@ -9,7 +9,7 @@ import 'package:tech_media/models/fake_data.dart';
 import '../component/my_components.dart';
 
 class HomeScreen extends StatelessWidget {
-   HomeScreen({
+  HomeScreen({
     super.key,
     required this.size,
     required this.textTheme,
