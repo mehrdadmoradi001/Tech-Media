@@ -4,7 +4,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:tech_media/component/my_colors.dart';
 import 'package:tech_media/component/my_components.dart';
 import 'package:tech_media/component/my_strings.dart';
-import 'package:tech_media/models/data_model.dart';
 import 'package:tech_media/models/fake_data.dart';
 import '../gen/assets.gen.dart';
 
