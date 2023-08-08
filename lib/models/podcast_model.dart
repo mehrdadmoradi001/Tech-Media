@@ -1,3 +1,5 @@
+import 'package:tech_media/component/api_constant.dart';
+
 class PodcastModel {
   String? id;
   String? title;
@@ -19,7 +21,7 @@ class PodcastModel {
       PodcastModel(
         jsonObject['id'],
         jsonObject['title'],
-        jsonObject['poster'],
+        ApiConstant.hostDlUrl + jsonObject['poster'],
         jsonObject['publisher'],
         jsonObject['view'],
         jsonObject['created_at'],
