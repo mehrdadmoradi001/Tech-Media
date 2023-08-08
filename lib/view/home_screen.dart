@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:tech_media/component/my_colors.dart';
 import 'package:tech_media/component/my_strings.dart';
@@ -148,6 +150,7 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
+
   Widget topPodcasts() {
     return Obx(
       () => SizedBox(
@@ -157,28 +160,41 @@ class HomeScreen extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
             return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding:
-                  EdgeInsets.fromLTRB(8, 8, index == 0 ? bodyMargin : 15, 8),
+                  padding: EdgeInsets.fromLTRB(
+                      8, 8, index == 0 ? bodyMargin : 15, 8),
                   //blogModelList
-                  child: Container(
-                    height: size.height / 5.3,
-                    width: size.width / 2.4,
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(16),
+                  child: CachedNetworkImage(
+                    imageUrl: homeScreenController.topPodcasts[index].poster!,
+                    imageBuilder: (context, imageProvider) => Container(
+                      height: size.height / 5.3,
+                      width: size.width / 2.4,
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(16),
+                        ),
+                        image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                      image: DecorationImage(
-                        image: NetworkImage(homeScreenController.topPodcasts[index].poster!),
-                        fit: BoxFit.cover,
-                      ),
+                    ),
+                    placeholder: (context, url) => const SpinKitFadingCube(
+                      color: SolidColors.primaryColor,
+                      size: 32.0,
+                    ),
+                    errorWidget: (context, url, error) => const Icon(
+                      Icons.image_not_supported_outlined,
+                      size: 50,
+                      color: Colors.grey,
                     ),
                   ),
                 ),
                 Padding(
-                  padding:
-                  EdgeInsets.fromLTRB(8, 8, index == 0 ? bodyMargin : 15, 8),
+                  padding: EdgeInsets.fromLTRB(
+                      8, 8, index == 0 ? bodyMargin : 15, 8),
                   child: SizedBox(
                     width: size.width / 2.4,
                     child: Text(
