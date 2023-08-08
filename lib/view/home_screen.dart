@@ -46,7 +46,7 @@ class HomeScreen extends StatelessWidget {
             //photo & title hots blog
             const SizedBox(height: 32),
             SeeMorePodcast(bodyMargin: bodyMargin, textTheme: textTheme),
-            HomePagePodcastList(size: size, bodyMargin: bodyMargin),
+            topPodcasts(),
             const SizedBox(height: 50),
           ],
         ),
@@ -148,61 +148,50 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
-}
-
-class HomePagePodcastList extends StatelessWidget {
-  const HomePagePodcastList({
-    super.key,
-    required this.size,
-    required this.bodyMargin,
-  });
-
-  final Size size;
-  final double bodyMargin;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: size.height / 3.5,
-      child: ListView.builder(
-        itemCount: blogModelList.getRange(1, 6).length,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return Column(
-            children: [
-              Padding(
-                padding:
-                    EdgeInsets.fromLTRB(8, 8, index == 0 ? bodyMargin : 15, 8),
-                //blogModelList
-                child: Container(
-                  height: size.height / 5.3,
-                  width: size.width / 2.4,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(16),
-                    ),
-                    image: DecorationImage(
-                      image: NetworkImage(blogModelList[index].imageUrl),
-                      fit: BoxFit.cover,
+  Widget topPodcasts() {
+    return Obx(
+      () => SizedBox(
+        height: size.height / 3.5,
+        child: ListView.builder(
+          itemCount: homeScreenController.topPodcasts.length,
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) {
+            return Column(
+              children: [
+                Padding(
+                  padding:
+                  EdgeInsets.fromLTRB(8, 8, index == 0 ? bodyMargin : 15, 8),
+                  //blogModelList
+                  child: Container(
+                    height: size.height / 5.3,
+                    width: size.width / 2.4,
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(16),
+                      ),
+                      image: DecorationImage(
+                        image: NetworkImage(homeScreenController.topPodcasts[index].poster!),
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Padding(
-                padding:
-                    EdgeInsets.fromLTRB(8, 8, index == 0 ? bodyMargin : 15, 8),
-                child: SizedBox(
-                  width: size.width / 2.4,
-                  child: Text(
-                    blogModelList[index].writer,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
+                Padding(
+                  padding:
+                  EdgeInsets.fromLTRB(8, 8, index == 0 ? bodyMargin : 15, 8),
+                  child: SizedBox(
+                    width: size.width / 2.4,
+                    child: Text(
+                      homeScreenController.topPodcasts[index].title!,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                    ),
                   ),
                 ),
-              ),
-            ],
-          );
-        },
+              ],
+            );
+          },
+        ),
       ),
     );
   }
