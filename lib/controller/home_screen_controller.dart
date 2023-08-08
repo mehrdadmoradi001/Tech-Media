@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:tech_media/component/api_constant.dart';
 import 'package:tech_media/models/article_model.dart';
+import 'package:tech_media/models/podcast_model.dart';
 import 'package:tech_media/models/poster_model.dart';
 import 'package:tech_media/services/dio_service.dart';
 
@@ -10,7 +11,7 @@ class HomeScreenController extends GetxController {
   late Rx<PosterModel> poster;
   RxList tagsList = RxList();
   RxList<ArticleModel> topVisitedList = RxList();
-  RxList<PosterModel> topPodcasts = RxList();
+  RxList<PodcastModel> topPodcasts = RxList();
 
   //زمانی که این controller برای من init میشه که بتونم تووش کال بکنم و getHomeItems رو میگیریم
   @override
@@ -34,6 +35,10 @@ class HomeScreenController extends GetxController {
       //و الان میتونیم لیست مون رو توی view از این controller  بگیریم
       response.data['top_visited'].forEach((element) {
         topVisitedList.add(ArticleModel.fromMapJson(element));
+      });
+
+      response.data['top_podcasts'].forEach((element) {
+        topPodcasts.add(PodcastModel.fromMapJson(element));
       });
     }
   }
