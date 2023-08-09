@@ -1,18 +1,19 @@
+import 'package:tech_media/component/api_constant.dart';
+
 class PosterModel {
   String? id;
   String? title;
   String? image;
 
-  PosterModel(
+  PosterModel({
     this.id,
     this.title,
     this.image,
-  );
+  });
 
-  factory PosterModel.fromMapJson(Map<String, dynamic> jsonObject) =>
-      PosterModel(
-        jsonObject['id'],
-        jsonObject['title'],
-        jsonObject['image'],
-      );
+  PosterModel.fromJson(Map<String, dynamic> element) {
+    id = element["id"];
+    title = element["title"];
+    image = ApiConstant.hostDlUrl + element["image"];
+  }
 }
