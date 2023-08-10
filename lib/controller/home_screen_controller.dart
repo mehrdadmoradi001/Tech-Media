@@ -13,6 +13,8 @@ class HomeScreenController extends GetxController {
   RxList tagsList = RxList();
   RxList<ArticleModel> topVisitedList = RxList();
   RxList<PodcastModel> topPodcasts = RxList();
+  //میخوایم تا وقتی که null یه لودینگ نشونمون بده و وقتی متغیرها مقداردهی شدن بیا صفحه رو نشون بده
+  RxBool loading = false.obs;
 
   //زمانی که این controller برای من init میشه که بتونم تووش کال بکنم و getHomeItems رو میگیریم
   @override
@@ -24,6 +26,8 @@ class HomeScreenController extends GetxController {
   //این متد زیر برای اینه که variable های بالا رو برامون از سرور بگیره و پر بکنه و
   // چون میخواد از سرور بگیره کار زمان بره و async میخواد
   getHomeItems() async {
+    //وقتی متد getHomeItems اجرا میشه لودینگ true باشه
+    loading.value = true;
     var response = await DioService().getMethod(ApiConstant.getHomeItems);
     // میخواین با استفاده از response یی که داریم List هامون رو پر بکنیم
     //  یعنی به هر item از List دسترسی داشته باشیم با استفاده از for ech
@@ -45,6 +49,9 @@ class HomeScreenController extends GetxController {
       //میخوایم poster رو مقدار دهی بکنیم که بتونیم توی view بهش دسترسی داشته باشیم.
       //میخوام کلید PosterModel رو که poster هست رو با fromJson که یه دیتا map بگیریم
       poster.value = PosterModel.fromJson(response.data['poster']);
+
+      //وقتی هم که شرط اجرا شد و همه قبلی ها اجرا شد بیاد لودینگ false بشه چون مبخوایم توی ui ازش استفاده بکنم
+      loading.value = false;
 
     }
   }
