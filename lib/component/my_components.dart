@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:tech_media/component/my_colors.dart';
 import 'package:tech_media/gen/assets.gen.dart';
 import 'package:tech_media/models/fake_data.dart';
-
-
 
 class TechDivider extends StatelessWidget {
   const TechDivider({
@@ -18,28 +17,27 @@ class TechDivider extends StatelessWidget {
     return Divider(
       thickness: 1.5,
       color: SolidColors.dividerColor,
-      indent: size.width/6,
-      endIndent: size.width/6,
+      indent: size.width / 6,
+      endIndent: size.width / 6,
     );
   }
 }
 
-
 class MainTagsHashtags extends StatelessWidget {
-   MainTagsHashtags({
+  MainTagsHashtags({
     super.key,
     required this.textTheme,
     required this.index,
-     this.gradient,
-     this.color,
-     this.textStyle,
+    this.gradient,
+    this.color,
+    this.textStyle,
   });
 
   final TextTheme textTheme;
   var index;
-   Gradient? gradient;
-   Color? color;
-   TextStyle? textStyle;
+  Gradient? gradient;
+  Color? color;
+  TextStyle? textStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -69,6 +67,20 @@ class MainTagsHashtags extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class LoadingSpinK extends StatelessWidget {
+  const LoadingSpinK({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const SpinKitFadingCube(
+      color: SolidColors.primaryColor,
+      size: 32.0,
     );
   }
 }
