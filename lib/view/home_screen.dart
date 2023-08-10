@@ -32,28 +32,33 @@ class HomeScreen extends StatelessWidget {
       physics: const BouncingScrollPhysics(),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
-        child: Obx(
-          () => Column(
-            children: [
-              //AppBar custom
-              const SizedBox(height: 8),
-              //banner
-              poster(),
-              const SizedBox(height: 16),
-              // Hashtags
-              HomePageTagList(bodyMargin: bodyMargin, textTheme: textTheme),
-              const SizedBox(height: 32),
-              //view hots blog
-              SeeMoreBlog(bodyMargin: bodyMargin, textTheme: textTheme),
-              topVisited(),
-              //photo & title hots blog
-              const SizedBox(height: 32),
-              SeeMorePodcast(bodyMargin: bodyMargin, textTheme: textTheme),
-              topPodcasts(),
-              const SizedBox(height: 50),
-            ],
-          ),
-        ),
+        child: homeScreenController.loading.value == false
+            ? Obx(
+              () =>
+              Column(
+                children: [
+                  //AppBar custom
+                  const SizedBox(height: 8),
+                  //banner
+                  poster(),
+                  const SizedBox(height: 16),
+                  // Hashtags
+                  HomePageTagList(
+                      bodyMargin: bodyMargin, textTheme: textTheme),
+                  const SizedBox(height: 32),
+                  //view hots blog
+                  SeeMoreBlog(bodyMargin: bodyMargin, textTheme: textTheme),
+                  topVisited(),
+                  //photo & title hots blog
+                  const SizedBox(height: 32),
+                  SeeMorePodcast(
+                      bodyMargin: bodyMargin, textTheme: textTheme),
+                  topPodcasts(),
+                  const SizedBox(height: 50),
+                ],
+              ),
+        )
+            : const LoadingSpinK(),
       ),
     );
   }
@@ -69,7 +74,7 @@ class HomeScreen extends StatelessWidget {
             children: [
               Padding(
                 padding:
-                    EdgeInsets.fromLTRB(8, 8, index == 0 ? bodyMargin : 15, 8),
+                EdgeInsets.fromLTRB(8, 8, index == 0 ? bodyMargin : 15, 8),
                 //blogModelList
                 child: SizedBox(
                   height: size.height / 5.3,
@@ -134,7 +139,7 @@ class HomeScreen extends StatelessWidget {
               ),
               Padding(
                 padding:
-                    EdgeInsets.fromLTRB(8, 8, index == 0 ? bodyMargin : 15, 8),
+                EdgeInsets.fromLTRB(8, 8, index == 0 ? bodyMargin : 15, 8),
                 child: SizedBox(
                   width: size.width / 2.4,
                   child: Text(
@@ -163,28 +168,27 @@ class HomeScreen extends StatelessWidget {
             children: [
               Padding(
                 padding:
-                    EdgeInsets.fromLTRB(8, 8, index == 0 ? bodyMargin : 15, 8),
+                EdgeInsets.fromLTRB(8, 8, index == 0 ? bodyMargin : 15, 8),
                 //blogModelList
                 child: CachedNetworkImage(
                   imageUrl: homeScreenController.topPodcasts[index].poster!,
-                  imageBuilder: (context, imageProvider) => Container(
-                    height: size.height / 5.3,
-                    width: size.width / 2.4,
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(16),
+                  imageBuilder: (context, imageProvider) =>
+                      Container(
+                        height: size.height / 5.3,
+                        width: size.width / 2.4,
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(16),
+                          ),
+                          image: DecorationImage(
+                            image: imageProvider,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                       ),
-                      image: DecorationImage(
-                        image: imageProvider,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  placeholder: (context, url) => const SpinKitFadingCube(
-                    color: SolidColors.primaryColor,
-                    size: 32.0,
-                  ),
-                  errorWidget: (context, url, error) => const Icon(
+                  placeholder: (context, url) => const LoadingSpinK(),
+                  errorWidget: (context, url, error) =>
+                  const Icon(
                     Icons.image_not_supported_outlined,
                     size: 50,
                     color: Colors.grey,
@@ -193,7 +197,7 @@ class HomeScreen extends StatelessWidget {
               ),
               Padding(
                 padding:
-                    EdgeInsets.fromLTRB(8, 8, index == 0 ? bodyMargin : 15, 8),
+                EdgeInsets.fromLTRB(8, 8, index == 0 ? bodyMargin : 15, 8),
                 child: SizedBox(
                   width: size.width / 2.4,
                   child: Text(
@@ -227,24 +231,27 @@ class HomeScreen extends StatelessWidget {
               )),
           child: CachedNetworkImage(
             imageUrl: homeScreenController.poster.value.image!,
-            imageBuilder: (context, imageProvider) => Container(
-              height: size.height / 5.3,
-              width: size.width / 2.4,
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(16),
+            imageBuilder: (context, imageProvider) =>
+                Container(
+                  height: size.height / 5.3,
+                  width: size.width / 2.4,
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(16),
+                    ),
+                    image: DecorationImage(
+                      image: imageProvider,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
-                image: DecorationImage(
-                  image: imageProvider,
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            placeholder: (context, url) => const SpinKitFadingCube(
+            placeholder: (context, url) =>
+            const SpinKitFadingCube(
               color: SolidColors.primaryColor,
               size: 32.0,
             ),
-            errorWidget: (context, url, error) => const Icon(
+            errorWidget: (context, url, error) =>
+            const Icon(
               Icons.image_not_supported_outlined,
               size: 50,
               color: Colors.grey,
