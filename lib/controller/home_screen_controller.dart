@@ -3,6 +3,7 @@ import 'package:tech_media/component/api_constant.dart';
 import 'package:tech_media/models/article_model.dart';
 import 'package:tech_media/models/podcast_model.dart';
 import 'package:tech_media/models/poster_model.dart';
+import 'package:tech_media/models/tags_model.dart';
 import 'package:tech_media/services/dio_service.dart';
 
 //یک کنترلر درست میکنیم از تمام اجزای صفحه HomeScreen که با controller بهشون دسترسی داشته باشیم
@@ -10,7 +11,7 @@ import 'package:tech_media/services/dio_service.dart';
 class HomeScreenController extends GetxController {
   //متغیر poster رو مقداردهی اولیه میکنیم و همچمنین observable
   Rx<PosterModel> poster = PosterModel().obs;
-  RxList tagsList = RxList();
+  RxList<TagsModel> tagsList = RxList();
   RxList<ArticleModel> topVisitedList = RxList();
   RxList<PodcastModel> topPodcasts = RxList();
   //میخوایم تا وقتی که null یه لودینگ نشونمون بده و وقتی متغیرها مقداردهی شدن بیا صفحه رو نشون بده
@@ -45,6 +46,12 @@ class HomeScreenController extends GetxController {
       response.data['top_podcasts'].forEach((element) {
         topPodcasts.add(PodcastModel.fromMapJson(element));
       });
+
+      //از این طریق لیست تگ هارو پر میکنیم
+      response.data['tags'].forEach((element) {
+        tagsList.add(TagsModel.fromMapJson(element));
+      });
+
 
       //میخوایم poster رو مقدار دهی بکنیم که بتونیم توی view بهش دسترسی داشته باشیم.
       //میخوام کلید PosterModel رو که poster هست رو با fromJson که یه دیتا map بگیریم
