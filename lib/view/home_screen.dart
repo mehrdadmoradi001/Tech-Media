@@ -43,8 +43,7 @@ class HomeScreen extends StatelessWidget {
                   poster(),
                   const SizedBox(height: 16),
                   // Hashtags
-                  HomePageTagList(
-                      bodyMargin: bodyMargin, textTheme: textTheme),
+                  tags(),
                   const SizedBox(height: 32),
                   //view hots blog
                   SeeMoreBlog(bodyMargin: bodyMargin, textTheme: textTheme),
@@ -278,6 +277,30 @@ class HomeScreen extends StatelessWidget {
       ],
     );
   }
+  Widget tags(){
+    return SizedBox(
+      height: 60,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: HashTagModelList.length,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: EdgeInsets.fromLTRB(0, 8, index == 0 ? bodyMargin : 15, 8),
+            child: MainTagsHashtags(
+              textStyle: textTheme.titleMedium,
+              textTheme: textTheme,
+              index: index,
+              gradient: const LinearGradient(
+                colors: GradientColors.tags,
+                begin: Alignment.centerRight,
+                end: Alignment.centerLeft,
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
 }
 
 class SeeMorePodcast extends StatelessWidget {
@@ -338,43 +361,6 @@ class SeeMoreBlog extends StatelessWidget {
           style: textTheme.headlineMedium,
         ),
       ],
-    );
-  }
-}
-
-class HomePageTagList extends StatelessWidget {
-  const HomePageTagList({
-    super.key,
-    required this.bodyMargin,
-    required this.textTheme,
-  });
-
-  final double bodyMargin;
-  final TextTheme textTheme;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 60,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: HashTagModelList.length,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: EdgeInsets.fromLTRB(0, 8, index == 0 ? bodyMargin : 15, 8),
-            child: MainTagsHashtags(
-              textStyle: textTheme.titleMedium,
-              textTheme: textTheme,
-              index: index,
-              gradient: const LinearGradient(
-                colors: GradientColors.tags,
-                begin: Alignment.centerRight,
-                end: Alignment.centerLeft,
-              ),
-            ),
-          );
-        },
-      ),
     );
   }
 }
