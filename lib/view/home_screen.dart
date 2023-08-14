@@ -16,6 +16,7 @@ class HomeScreen extends StatelessWidget {
     required this.size,
     required this.textTheme,
     required this.bodyMargin,
+    required this.bodyError,
   });
 
   // ایجاد dependency با controller یی که براش ساختیم که از متد put استفاده میکنیم
@@ -25,6 +26,7 @@ class HomeScreen extends StatelessWidget {
   final Size size;
   final TextTheme textTheme;
   final double bodyMargin;
+  final double bodyError;
 
   @override
   Widget build(BuildContext context) {
