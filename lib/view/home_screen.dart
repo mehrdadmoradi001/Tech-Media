@@ -45,7 +45,6 @@ class HomeScreen extends StatelessWidget {
                   // Hashtags
                   tags(),
                   const SizedBox(height: 32),
-                  const SizedBox(height: 32),
                   //view hots blog
                   SeeMoreBlog(bodyMargin: bodyMargin, textTheme: textTheme),
                   topVisited(),
